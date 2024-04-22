@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { openDB } from "idb";
-import VideoApp from "@/components/VideoApp";
 
 export default function Home() {
   useEffect(()=> {
