@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { openDB } from "idb";
 
 export default function Home() {
+
+  // const [ src, setSrc] = useState('');
+  const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(()=> {
     const downloadVideo = async () => {
         try{
@@ -38,9 +41,16 @@ export default function Home() {
 
       if(videoBlob){
         const blobUrl = URL.createObjectURL(videoBlob);
+        // setSrc(blobUrl);
+        const videoEl:any = videoRef.current;
+        if(videoEl){
+          videoEl.src = blobUrl;
+          videoEl.play();
+        }
         console.log(blobUrl);
       }
       await tx.done;
+
     }
     catch(err){
       console.log(err);
@@ -51,6 +61,9 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {/* <VideoApp/> */}
+      <video width="420" height="250" ref={videoRef} controls>
+        {/* <source src={src} type="video/mp4" ></source> */}
+      </video>
       Hello APp
       <button className="bg-white text-black p-2 rounded-lg hover:scale-105" onClick={retrieveVideo}>Play video</button>
     </main>
