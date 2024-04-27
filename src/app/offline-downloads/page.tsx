@@ -64,7 +64,6 @@ export default function VideoDownload() {
       <video width="420" height="250" ref={videoRef} controls>
         {/* <source src={src} type="video/mp4" ></source> */}
       </video>
-      Hello APp
       <button className="bg-white text-black p-2 rounded-lg hover:scale-105" onClick={retrieveVideo}>Play video</button>
     </main>
   );
